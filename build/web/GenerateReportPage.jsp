@@ -65,25 +65,20 @@
   <div class="container">
 		<div class="left">
                     <center><h2>Report Generator</h2></center>
-			<form>
+			<form method="get" action="LogController">
                                 <label for="table">Select Table</label>
-                                 <select name="role">
-                                 <option value="admin">students</option>
-                                 <option value="support staff">trainers</option>
-                                  <option value="support staff">equipments</option>
+                                 <select name="select" type = "select" id="select">
+                                     <option type = "students" value="students">students</option>
+                                     <option type = "trainers" value="trainers">trainers</option>
+                                     <option type = "equipments" value="equipments">equipments</option>
                                  </select>
-				<input type="datetime-local" id="start" name="start">
 				<label for="start">Start Time:</label>
-				<input type="datetime-local" id="start" name="start">
+                                <input type="datetime-local" name="start" value="start" id="start" name="start">
 				<label for="end">End Time:</label>
-				<input type="datetime-local" id="end" name="end">
-				<button type="button"id ="Time">Time</button>
-                <button type="button" id ="Date">Date</button>
-                 <button type="button" id ="Generate">Generate Report</button>
-                
+				<input type="datetime-local" name="end" value="end" id="end" name="end">
+                                <button type="Generate" name="Generate" value="Generate" id ="Generate">Generate Report</button>
 			</form>
 		</div>
-		
            
   
   
