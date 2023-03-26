@@ -2,9 +2,12 @@
 /build/
 /dist/
 *.class
-*.class
-*.class
-build/web/WEB-INF/classes/controller/addAccountController.class
+/build/
 *.class
 *.xml
 *.properties
+*.class
+nbproject/project.properties
+nbproject/private/private.properties
+nbproject/ant-deploy.xml
+
