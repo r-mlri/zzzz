@@ -70,25 +70,25 @@
 		<tbody>
                     <c:forEach var="ustfits" items="${listEquipment}">
 			<tr>
-				<td class="image"><img src="https://via.placeholder.com/150"></td>
-				<td><c:out value="${equipments.name}" /></td>
-				<td><c:out value="${equipments.recommendation}" /></td>
-				<td><c:out value="${equipments.quantity}" /></td>
-				<td><c:out value="${equipments.picture}" /></td>
+					<td class="image"><img src="https://via.placeholder.com/150"></td>
+					<td>lorem ipsum</td>
+					<td>lorem ipsumlorem ipsumlorem ipsumlorem ipsum</td>
+					<td>3</td>
+					<td>lorem ipsum</td>
 			</tr>
 			<tr>
-				<td class="image"><img src="https://via.placeholder.com/150"></td>
-				<td><c:out value="${equipments.name}" /></td>
-				<td><c:out value="${equipments.recommendation}" /></td>
-				<td><c:out value="${equipments.quantity}" /></td>
-				<td><c:out value="${equipments.picture}" /></td>
+					<td class="image"><img src="https://via.placeholder.com/150"></td>
+					<td>lorem ipsum</td>
+					<td>lorem ipsumlorem ipsumlorem ipsumlorem ipsum</td>
+					<td>3</td>
+					<td>lorem ipsum</td>
 			</tr>
 			<tr>
-				<td class="image"><img src="https://via.placeholder.com/150"></td>
-				<td><c:out value="${equipments.name}" /></td>
-				<td><c:out value="${equipments.recommendation}" /></td>
-				<td><c:out value="${equipments.quantity}" /></td>
-				<td><c:out value="${equipments.picture}" /></td>
+					<td class="image"><img src="https://via.placeholder.com/150"></td>
+					<td>lorem ipsum</td>
+					<td>lorem ipsumlorem ipsumlorem ipsumlorem ipsum</td>
+					<td>3</td>
+					<td>lorem ipsum</td>
 			</tr>
                     </c:forEach>
 		</tbody>
