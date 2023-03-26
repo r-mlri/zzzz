@@ -1,0 +1,217 @@
+.hero {
+			background-image: url('hero.jpg');
+			background-size: cover;
+			background-position: center center;
+			height: 500px;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			color: #fff;
+			text-align: center;
+			font-size: 36px;
+			font-weight: 600;
+			text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+		}
+                
+header {
+      background-color: #333;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      height: 50px;
+      padding: 0 20px;
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1;
+      left: 0;
+    }
+    /* Add styles for the hamburger menu */
+    .menu-toggle {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 50px;
+      width: 50px;
+      background-color: #333;
+      color: #fff;
+      cursor: pointer;
+    }
+    /* Add styles for the icon */
+    span {
+      font-size: 20px;
+      margin-right: 20px;
+    }
+    /* Hide the menu by default */
+    nav {
+      display: none;
+      background-color: #333;
+      color: #fff;
+      position: fixed;
+      top: 50px;
+      left: 0;
+   
+      width: 200px;
+    }
+    /* Show the menu when the hamburger menu is clicked */
+    .show-menu {
+      display: block;
+    }
+    /* Add styles for the menu items */
+    nav a {
+      display: block;
+      padding: 20px;
+      color: #fff;
+      text-decoration: none;
+    }
+
+    /* Add styles for the footer */
+    footer {
+      background-color: #333;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      height: 50px;
+      justify-content: center;
+      bottom: 0;
+      position: fixed;
+      width: 100%;
+      left: 0;
+    }
+    /* Add styles for the yellow line under the header */
+    .header-line {
+      background-color: #ff0;
+      height: 3px;
+      width: 100%;
+      position: fixed;
+      top: 50px;
+      z-index: 0;
+      left: 0;
+    }
+      .header-name {
+  position: absolute;
+  top: 0;
+  right: 80px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  color: #fff;
+  font-size: 18px;
+   font-family:Helvetica;
+}
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+ 	.main-content {
+			padding: 50px;
+			display: flex;
+			flex-wrap: wrap;
+			justify-content: space-between;
+			max-width: 1200px;
+			margin: 0 auto;
+		}
+
+		.trainer {
+			width:  calc(33.33% - 20px);
+			margin-bottom: 40px;
+			box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+			transition: all 0.3s ease;
+			border-radius: 5px;
+			overflow: hidden;
+		}
+
+		.trainer:hover {
+			box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.3);
+			transform: translateY(-5px);
+		}
+
+		.trainer img {
+			display: block;
+			width: 100%;
+			height: auto;
+			transition: all 0.3s ease;
+		}
+
+		.trainer:hover img {
+			transform: scale(1.1);
+		}
+
+		.trainer .name {
+			padding: 20px;
+			background-color: #fff;
+			text-align: center;
+			font-weight: 600;
+			font-size: 24px;
+		}
+
+		.trainer .sport {
+			padding: 20px;
+			background-color: #f1f1f1;
+			text-align: center;
+			font-weight: 400;
+			font-size: 18px;
+		}
+
+		.trainer .specialty {
+			padding: 20px;
+			background-color: #eee;
+			text-align: center;
+			font-weight: 400;
+			font-size: 18px;
+		}
+
+		.trainer .cta {
+			padding: 20px;
+			background-color: #333;
+			text-align: center;
+                       
+                        
+		}
+
+		.trainer .cta button {
+			color: #333;
+			font-weight: 600;
+			text-transform: uppercase;
+			text-decoration: none;
+			border: 2px solid #fff;
+			padding: 10px 20px;
+			border-radius: 5px;
+			transition: all 0.3s ease;
+                         display: inline-block; /* added this line */
+  width: 45%; /* added this line */
+  margin: 0 5px; /* added this line */
+		}
+
+		.trainer .cta button:hover {
+                        width:100;
+			background-color: #eee;
+			color: #333;
+			border: 2px solid #333;
+		}
+
+		table {
+			margin: 0 auto;
+			width: 80%;
+			border-collapse: collapse;
+			border: 1px solid #ccc;
+		}
+
+		th, td {
+			text-align: left;
+			padding: 8px;
+			border: 1px solid #ccc;
+		}
+
+		th {
+			background-color: #f2f2f2;
+		}

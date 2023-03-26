@@ -1,0 +1,177 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : Mar 21, 2023, 1:37:20 PM
+    Author     : Rafael
+*/
+
+		body {
+			margin: 0;
+			padding: 0;
+			font-family: 'Open Sans', sans-serif;
+             background-color: #e5e9ec;
+		}
+                
+                        @font-face{
+        font-family: Helvetica;
+        src: url("../fontstyles/Helvetica/Helvetica.otf") format("opentype");
+    }
+                
+			 /* Add styles for the header */
+    header {
+      background-color: #333;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      height: 50px;
+      padding: 0 20px;
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1;
+      left: 0;
+    }
+    /* Add styles for the hamburger menu */
+    .menu-toggle {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 50px;
+      width: 50px;
+      background-color: #333;
+      color: #fff;
+      cursor: pointer;
+    }
+    /* Add styles for the icon */
+    span {
+      font-size: 20px;
+      margin-right: 20px;
+    }
+    /* Hide the menu by default */
+    nav {
+      display: none;
+      background-color: #333;
+      color: #fff;
+      position: fixed;
+      top: 50px;
+      left: 0;
+   
+      width: 200px;
+    }
+    /* Show the menu when the hamburger menu is clicked */
+    .show-menu {
+      display: block;
+    }
+    /* Add styles for the menu items */
+    nav a {
+      display: block;
+      padding: 20px;
+      color: #fff;
+      text-decoration: none;
+    }
+
+    /* Add styles for the footer */
+    footer {
+      background-color: #333;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      height: 50px;
+      justify-content: center;
+      bottom: 0;
+      position: fixed;
+      width: 100%;
+      left: 0;
+    }
+    /* Add styles for the yellow line under the header */
+    .header-line {
+      background-color: #ff0;
+      height: 3px;
+      width: 100%;
+      position: fixed;
+      top: 50px;
+      z-index: 0;
+      left: 0;
+    }
+		.hero {
+			background-image: url('hero.jpg');
+			background-size: cover;
+			background-position: center center;
+			height: 500px;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			color: #fff;
+			text-align: center;
+			font-size: 36px;
+			font-weight: 600;
+			text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+		}
+
+		.main-content {
+			padding: 50px;
+			display: flex;
+			flex-wrap: wrap;
+			justify-content: space-between;
+			max-width: 1200px;
+			margin: 0 auto;
+		}
+
+		.trainer {
+			width: calc(33.33% - 20px);
+			margin-bottom: 40px;
+			box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+			transition: all 0.3s ease;
+			border-radius: 5px;
+			overflow: hidden;
+		}
+
+		.trainer:hover {
+			box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.3);
+			transform: translateY(-5px);
+		}
+
+		.trainer img {
+			display: block;
+			width: 100%;
+			height: auto;
+			transition: all 0.3s ease;
+		}
+
+		.trainer:hover img {
+			transform: scale(1.1);
+		}
+
+		.trainer .name {
+			padding: 20px;
+			background-color: #fff;
+			text-align: center;
+			font-weight: 600;
+			font-size: 24px;
+		}
+
+		.trainer .sport {
+			padding: 20px;
+			background-color: #f1f1f1;
+			text-align: center;
+			font-weight: 400;
+			font-size: 18px;
+		}
+
+		.trainer .specialty {
+			padding: 20px;
+			background-color: #eee;
+			text-align: center;
+			font-weight: 400;
+			font-size: 18px;
+		}
+                  
+        body {
+	font-family: Helvetica;
+        background-image: url("../Pictures/ipeapic.jpg");
+        background-size: cover;
+        background-color: #e5e9ec;
+        
+    }

@@ -1,0 +1,114 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : Mar 21, 2023, 1:10:40 PM
+    Author     : Rafael
+*/
+
+    /* For the Helvetica OTF font */
+    @font-face{
+        font-family: Helvetica;
+        src: url("../fontstyles/Helvetica/Helvetica.otf") format("opentype");
+    }
+    html,body
+    {
+    width: 100%;
+    height: 100%;
+    margin: 0px;
+    padding: 0px;
+    overflow-x: hidden; 
+    }
+     body {
+	font-family: Helvetica;
+        left:0;
+        background-color: #e5e9ec;
+    }
+    /* Add styles for the header */
+    header {
+      background-color: #333;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      height: 50px;
+      padding: 0 20px;
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1;
+       left: 0;
+    }
+    /* Add styles for the hamburger menu */
+    .menu-toggle {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 50px;
+      width: 50px;
+      background-color: #333;
+      color: #fff;
+      cursor: pointer;
+    }
+    /* Add styles for the icon */
+    span {
+      font-size: 20px;
+      margin-right: 20px;
+    }
+    /* Hide the menu by default */
+    nav {
+      display: none;
+      background-color: #333;
+      color: #fff;
+      position: fixed;
+      top: 50px;
+      left: 0;
+      width: 200px;
+    }
+    /* Show the menu when the hamburger menu is clicked */
+    .show-menu {
+      display: block;
+    }
+    /* Add styles for the menu items */
+    nav a {
+      display: block;
+      padding: 20px;
+      color: #fff;
+      text-decoration: none;
+    }
+    /*       BACKGROUND        */
+    .picture-container {
+      background-image: url("../Pictures/ipeapic.jpg");
+      background-size: 100%;
+      padding-bottom: 300px;
+    
+      height: calc(100% - 50px - 3px);
+      right: 0;
+      top: 53px;
+      width: 100%;
+       left: 0;
+     
+    }
+    /* Add styles for the footer */
+    footer {
+      background-color: #333;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      height: 50px;
+      justify-content: center;
+      position: static;
+      bottom: 0;
+      width: 100%;
+       left: 0;
+    }
+    /* Add styles for the yellow line under the header */
+    .header-line {
+      background-color: #ff0;
+      height: 3px;
+      width: 100%;
+      position: fixed;
+      top: 50px;
+      z-index: 0;
+       left: 0;
+    }

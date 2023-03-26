@@ -1,0 +1,179 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : Mar 21, 2023, 1:28:35 PM
+    Author     : Rafael
+*/
+body {
+	font-family: Helvetica;
+        background-image: url("../Pictures/ipeapic.jpg");
+        background-size: cover;
+        background-color: #e5e9ec;
+        
+    }
+    
+            @font-face{
+        font-family: Helvetica;
+        src: url("../fontstyles/Helvetica/Helvetica.otf") format("opentype");
+    }
+    
+    /* Add styles for the header */
+    header {
+      background-color: #333;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      height: 50px;
+      padding: 0 20px;
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1;
+      left: 0;
+    }
+    /* Add styles for the hamburger menu */
+    .menu-toggle {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 50px;
+      width: 50px;
+      background-color: #333;
+      color: #fff;
+      cursor: pointer;
+    }
+    /* Add styles for the icon */
+    span {
+      font-size: 20px;
+      margin-right: 20px;
+    }
+    /* Hide the menu by default */
+    nav {
+      display: none;
+      background-color: #333;
+      color: #fff;
+      position: fixed;
+      top: 50px;
+      left: 0;
+   
+      width: 200px;
+    }
+    /* Show the menu when the hamburger menu is clicked */
+    .show-menu {
+      display: block;
+    }
+    /* Add styles for the menu items */
+    nav a {
+      display: block;
+      padding: 20px;
+      color: #fff;
+      text-decoration: none;
+    }
+ 
+    /* Add styles for the footer */
+    footer {
+      background-color: #333;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      height: 50px;
+      justify-content: center;
+      bottom: 0;
+      position: fixed;
+      width: 100%;
+      left: 0;
+    }
+    /* Add styles for the yellow line under the header */
+    .header-line {
+      background-color: #ff0;
+      height: 3px;
+      width: 100%;
+      position: fixed;
+      top: 50px;
+      z-index: 0;
+      left: 0;
+    }
+	
+
+		h1 {
+			text-align: center;
+			color: #333;
+		}
+
+		.container {
+			margin: 0 auto;
+			padding: 20px;
+			max-width: 1000px;
+			background-color: #fff;
+			box-shadow: 0 0 10px rgba(0,0,0,0.2);
+			border-radius: 10px;
+		
+		}
+
+		table {
+			width: 100%;
+			border-collapse: collapse;
+			margin-top: 20px;
+			table-layout: fixed;
+		}
+
+		th, td {
+			padding: 10px;
+			text-align: left;
+			border-bottom: 1px solid #ddd;
+			vertical-align: top;
+			
+		}
+
+		th {
+			background-color: #333;
+			color: #fff;
+			font-weight: normal;
+		}
+
+		tr:hover {
+			background-color: #f5f5f5;
+		}
+
+		td.image {
+			max-width: 200px;
+			max-height: 150px;
+			overflow: hidden;
+		}
+
+		td.image img {
+			max-width: 100%;
+			max-height: 100%;
+			object-fit: cover;
+		}
+
+		a {
+			display: block;
+			padding: 10px;
+			background-color: #333;
+			color: #fff;
+			text-align: center;
+			text-decoration: none;
+			border-radius: 5px;
+			margin-top: 20px;
+			max-width: 150px;
+			margin-left: auto;
+			margin-right: auto;
+			transition: background-color 0.2s ease;
+		}
+
+		a:hover {
+			background-color: #555;
+		}
+        
+        .sort-by {
+		display: flex;
+		flex-direction: row;
+        
+		align-items: center;
+        align:right;
+        text-align:right;
+        right:0;
+		}
