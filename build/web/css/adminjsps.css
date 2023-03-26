@@ -97,22 +97,6 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
       z-index: 0;
       left: 0;
     }
-	
-		.hero {
-			background-image: url('hero.jpg');
-			background-size: cover;
-			background-position: center center;
-			height: 500px;
-			display: flex;
-			align-items: center;
-			justify-content: center;
-			color: #fff;
-			text-align: center;
-			font-size: 36px;
-			font-weight: 600;
-			text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
-		}
-
     
 		h1 {
 			text-align: center;
@@ -277,4 +261,28 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
 			background-color: #fff;
 			color: #333;
 			border: 2px solid #333;
+		}
+                
+		.trainer .cta button:hover {
+                        width:100;
+			background-color: #eee;
+			color: #333;
+			border: 2px solid #333;
+		}
+
+		table {
+			margin: 0 auto;
+			width: 80%;
+			border-collapse: collapse;
+			border: 1px solid #ccc;
+		}
+
+		th, td {
+			text-align: left;
+			padding: 8px;
+			border: 1px solid #ccc;
+		}
+
+		th {
+			background-color: #f2f2f2;
 		}

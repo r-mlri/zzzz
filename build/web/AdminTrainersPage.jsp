@@ -64,7 +64,7 @@
 				<div class="cta">
 					<form action="edit" method="GET">
                                           <input type="hidden" name="id" value="${trainer.id}">
-                                             <button type="submit">Edit</button>
+                                             <a type="submit">Edit</a>
                                           </form>
                                              <br>
 					 <form action="delete" method="POST">
