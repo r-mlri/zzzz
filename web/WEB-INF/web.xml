@@ -144,6 +144,10 @@
         <servlet-name>TrainerControllerServlet</servlet-name>
         <servlet-class>controller.TrainerControllerServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>LogController</servlet-name>
+        <servlet-class>controller.LogController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>loginServlet</servlet-name>
         <url-pattern>/loginServlet</url-pattern>
@@ -175,6 +179,10 @@
     <servlet-mapping>
         <servlet-name>TrainerControllerServlet</servlet-name>
         <url-pattern>/TrainerControllerServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LogController</servlet-name>
+        <url-pattern>/LogController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
