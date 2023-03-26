@@ -17,7 +17,7 @@ public class InsertTrainer {
         Class.forName("com.mysql.cj.jdbc.Driver");
 
         try (Connection connection = DriverManager
-            .getConnection("jdbc:mysql://localhost:3306/ustfits?useSSL=false", "root", "root");    //Change the script
+            .getConnection("jdbc:mysql://localhost:3306/ustfits?useSSL=false", "root", "MyNewPass");    //Change the script
 
             // Step 2:Create a statement using connection object
             PreparedStatement preparedStatement = connection.prepareStatement(INSERT_USERS_SQL)) {

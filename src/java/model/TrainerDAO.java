@@ -17,7 +17,7 @@ public class TrainerDAO {
         this.Password = Password;
     }
 
-    private Connection getConnection() throws SQLException {
+    Connection getConnection() throws SQLException {
         return DriverManager.getConnection(url, Username, Password);
     }
 
