@@ -105,6 +105,10 @@
     menuToggle.addEventListener('click', () => {
       menu.classList.toggle('show-menu');
     });
+    
+    function showErrorPopup(message){
+        alert(message);
+    }
   </script>
 </body>
 </html>
