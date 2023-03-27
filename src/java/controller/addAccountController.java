@@ -58,36 +58,64 @@ public class addAccountController extends HttpServlet {
      protected void doPost(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
 
-            if("create".equals(request.getParameter("hidden"))){
+    if("create".equals(request.getParameter("hidden"))){
 
-                addAccountModel add = new addAccountModel();
-                String username = request.getParameter("username");
-                String password = request.getParameter("password");
-                String role = request.getParameter("role");
-                String pinStr = request.getParameter("pin");
-                int pin = 0;
+        String username = request.getParameter("username");
+        String password = request.getParameter("password");
+        String role = request.getParameter("role");
+        String pinStr = request.getParameter("pin");
+        int pin = 0;
+        
+        // Error structure
+        if (username == null || username.equals("")) {
+            request.setAttribute("errorMessage", "<font color=red>Please enter a username.</font>");
+            RequestDispatcher rd = getServletContext().getRequestDispatcher("/AddAccount.jsp");
+            rd.include(request, response);
+            return;
+        } 
 
-
-                if (conn != null) {
-                    if(add.selectUsername(username, conn) == null){
-                        try {
-                            pin = Integer.parseInt(pinStr);
-                            if(add.insertData(username, password, role, pin, conn) == true){
-                                request.getRequestDispatcher("/AdminHomePage.jsp").forward(request, response);
-                            }else if (pin < 10000 || pin > 99999) {
-                            request.setAttribute("errorMessage", "<font color=red>PIN should be a 5-digit number.</font>");
-                            request.getRequestDispatcher("/AddAccount.jsp").forward(request, response);
-                        }
-                        } catch (NumberFormatException e) {
-                            request.setAttribute("errorMessage", "<font color=red>PIN should be a number.</font>");
-                            request.getRequestDispatcher("/AddAccount.jsp").forward(request, response);
-                            return;  
-                        } 
-                    }else if (add.selectUsername(username, conn) != null) {
-                        request.setAttribute("errorMessage", "<font color=red>The Username already exist</font>");
-                        request.getRequestDispatcher("/AddAccount.jsp").forward(request, response);
-                    }
-                }
+        if (password == null || password.equals("")) {
+            request.setAttribute("errorMessage", "<font color=red>Please enter a password.</font>");
+            RequestDispatcher rd = getServletContext().getRequestDispatcher("/AddAccount.jsp");
+            rd.include(request, response);
+            return;
+        }
+ 
+        if (pinStr == null || pinStr.equals("")) {
+            request.setAttribute("errorMessage", "<font color=red>Please enter a PIN.</font>");
+            RequestDispatcher rd = getServletContext().getRequestDispatcher("/AddAccount.jsp");
+            rd.include(request, response);
+            return;
+        } else {
+            try {
+                pin = Integer.parseInt(pinStr);
+            } catch (NumberFormatException e) {
+                request.setAttribute("errorMessage", "<font color=red>PIN should be a number.</font>");
+                RequestDispatcher rd = getServletContext().getRequestDispatcher("/AddAccount.jsp");
+                rd.include(request, response);
+                return;
             }
+        }
+        if (pin < 1000 || pin > 9999) {
+            request.setAttribute("errorMessage", "<font color=red>PIN should be a 4-digit number.</font>");
+            RequestDispatcher rd = getServletContext().getRequestDispatcher("/AddAccount.jsp");
+            rd.include(request, response);
+            return;
+        }
+        if(conn != null){
+                    addAccountModel model1 = new addAccountModel();
+                    selectAccounts model2 = new selectAccounts();
+                    boolean error = model1.insertData(username, password, role, pin, conn);
+                    
+                    if(error != false){
+                         ResultSet records = model2.retrieveData(conn);
+
+                         if(records != null){
+                             request.setAttribute("results", records);
+                             request.getRequestDispatcher("Login.jsp").forward(request, response);
+                         }
+                    }
+        }
+    }
      }
 }

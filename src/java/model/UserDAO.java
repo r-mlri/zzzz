@@ -5,53 +5,40 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class UserDAO {
 
-    public String check(User User, Connection conn) throws SQLException
-   {
-       
-       String sql = "SELECT * FROM accounts";
-       String username = User.getUsername();
-       String password = User.getPassword();
-         
-       
-       String userdb = "";
-       String passdb = "";
-       String roledb = "";
-       
-         try
-         {
-             conn = DBConnection.getConnection();
-             PreparedStatement statement = conn.prepareStatement(sql, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
-             ResultSet resultSet = statement.executeQuery();
-             
-             if(resultSet.next()){
-                 
-              userdb = resultSet.getString("username");
-              passdb = resultSet.getString("password");
-              roledb = resultSet.getString("role");
- 
-               if(username.equals(userdb) && password.equals(passdb) && roledb.equals("admin")){
-                  return "SUCCESS FOR ADMIN";
-                  
-               }else if (username.equals(userdb) && password.equals(passdb) && roledb.equals("support staff")){
-                   return "SUCCESS FOR SS";
-                   
-               }else if(!username.equals(userdb) && !password.equals(passdb)){
-                   return "INVALID USER CREDENTIALS";
-                   
-               }
-               else{
-                   return null;
-               }
-             }
-             }   catch (SQLException ex) {
-                 Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
-         }
-        return null;
-   }
+    public User authenticate(/*User User*/ String username, String password) throws SQLException{
+        
+        Connection connection = null;
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
+        User user = null;
+
+        try {
+            connection = DBConnection.getConnection();
+            statement = connection.prepareStatement("SELECT * FROM accounts WHERE username=? AND password=?");
+            statement.setString(1, username);
+            statement.setString(2, password);
+            resultSet = statement.executeQuery();
+            
+            if (resultSet.next()) {
+                String role = resultSet.getString("role");
+                user = new User(username, password, role);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (resultSet != null) resultSet.close();
+                if (statement != null) statement.close();
+                if (connection != null) connection.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+
+        return user;
+    }
 
 }

@@ -58,7 +58,7 @@ public class exitController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
         throws ServletException, IOException {
 
-    if("Exit".equals(request.getParameter("hidden"))){
+    if("Leave".equals(request.getParameter("hidden"))){
 
         // Validate input data
         String username = request.getParameter("username");
