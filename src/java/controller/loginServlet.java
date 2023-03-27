@@ -25,54 +25,63 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import model.DBConnection;
 import model.User;
 import model.UserDAO;
 
-@WebServlet(name = "LoginServlet", urlPatterns = {"/login"})
 public class loginServlet extends HttpServlet {
-
+    Connection conn;
+    
+    public void init(ServletConfig config) throws ServletException {
+        super.init(config);
+        
+        conn = DBConnection.getConnection();
+    }
+    
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         
+        UserDAO userDAO = new UserDAO();
+        
         try {
-            // get the username and password from the request parameters
             String username = request.getParameter("username");
             String password = request.getParameter("password");
+            //String depassword = request.getParameter("password");
+            if(conn !=null){
+            User User = new User(username, password);
             
-            // authenticate the user
-            UserDAO userDao = new UserDAO();
-            User user = userDao.authenticate(username, password);
+            User.setUsername(username);
+            User.setPassword(password);
             
-            // if the user was not found, redirect back to the login page with an error message
-            if (user == null) {
-                request.setAttribute("errorMessage", "<font color=red>Invalid username or password.</font>");
-                request.getRequestDispatcher("Login.jsp").forward(request, response);
-                return;
-            }
-            else if (password == null && password == "")
-            {
-                request.setAttribute("errorMessage", "<font color=red>Enter your password.</font>");
-                request.getRequestDispatcher("Login.jsp").forward(request, response);
-                return;
-            }
-            else {
-                request.setAttribute("errorMessage", "<font color=red>Either user name or password or role is wrong.</font>");
-                request.getRequestDispatcher("Login.jsp").forward(request, response);
-            }
             
+            //Encryption
+            //password = Encryption.encrypt(password);
+            //Decryption
+            //depassword = Encryption.decrypt(password);
+            
+            
+            
+            String userValidate = userDAO.check(User, conn);
             HttpSession session = request.getSession();
-            session.setAttribute("user", user);
+            session.setAttribute("user", User);
             
-            if (user.getRole().equals("admin")) {
-                response.sendRedirect("AdminHomePage.jsp");
-            } else if (user.getRole().equals("support staff")) {
-                response.sendRedirect("SSHomePage.jsp");
-            } else {
-                // unknown role, redirect back to the login page with an error message
-                request.setAttribute("errorMessage", "Unknown role: " + user.getRole());
-                request.getRequestDispatcher("Login.jsp").forward(request, response);
+            switch (userValidate) {
+                case "SUCCESS FOR ADMIN":
+                    response.sendRedirect("AdminHomePage.jsp");
+                    break;
+                case "SUCCESS FOR SS":
+                    response.sendRedirect("SSHomePage.jsp");
+                    break;
+                case "INVALID USER CREDENTIALS":
+                    request.setAttribute("errorMessage", "<font color=red>wrong username/password</font>");
+                    request.getRequestDispatcher("/Login.jsp").forward(request, response);
+                    break;
+                default:
+                    request.getRequestDispatcher("/Error404.jsp").forward(request, response);
+                    break;   
             }
-        } catch (SQLException ex) {
+            }
+            } catch (SQLException ex) {
             Logger.getLogger(loginServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-}       
+}

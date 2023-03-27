@@ -63,32 +63,34 @@ public class entryController extends HttpServlet {
             String errorMessage = "";
             
             // Validate input parameters
-            String username = request.getParameter("username");
-            if (username == null || username.length() == 0) {
-                errorMessage = "<font color=red>Please enter a valid username.</font>";
-            }
-
-            String IDString = request.getParameter("ID");
-            int ID = 0;
-            try {
-                ID = Integer.parseInt(IDString);
-            } catch (NumberFormatException e) {
-                errorMessage = "<font color=red>Please enter a valid ID.</font>";
-            }
-
+            int ID = Integer.parseInt(request.getParameter("ID"));
             String input = request.getParameter("input");
-            if (input == null || input.length() != 10 || !input.matches("\\d+")) {
+            /*if (input == null || input.length() != 10 || !input.matches("\\d+")) {
                 errorMessage = "<font color=red>Please enter a valid input (10 digits only).</font>";
-            }
+            }*/
+            if(conn != null){
+                    entryModel model = new entryModel();
+                    selectModel model2 = new selectModel();
+                    boolean error = model.insertData(ID, conn);
+                    
+                    if(error != false){
+                         ResultSet records = model2.retrieveData(conn);
 
-            if (!errorMessage.isEmpty()) {
-                request.setAttribute("errorMessage", errorMessage);
-                RequestDispatcher rd = getServletContext().getRequestDispatcher("/StudentLog.jsp");
-                rd.include(request, response);
-                return;
-            }
-
-           
+                         if(records != null){
+                             request.setAttribute("results", records);
+                             request.getRequestDispatcher("SuccessPage.jsp").forward(request, response);
+                         }
+                         /*else{
+                             request.getRequestDispatcher("error2.jsp").forward(request, response);
+                         }*/
+                    }
+                    /*else{
+                        request.getRequestDispatcher("error.jsp").forward(request, response);
+                    }*/
+                }
+                /*else{
+                    request.getRequestDispatcher("error.jsp").forward(request, response);
+                }*/    
         }
-    }
+      }
 }

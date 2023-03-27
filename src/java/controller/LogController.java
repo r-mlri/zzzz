@@ -50,6 +50,16 @@ public class LogController extends HttpServlet {
      * @throws ServletException
      * @throws IOException
      */
+@WebServlet(name = "GenerateReportPage.jsp")
+public class LogController extends HttpServlet {
+
+    /**
+     *
+     * @param request
+     * @param response
+     * @throws ServletException
+     * @throws IOException
+     */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -87,8 +97,8 @@ public class LogController extends HttpServlet {
                         String formattedend = output.format(end);
                 
                         connection = DBConnection.getConnection();
-                        String entry = "SELECT * FROM studententrylog WHERE timestamp BETWEEN ? AND ?";
-                        String exit = "SELECT * FROM studentexitlog WHERE timestamp BETWEEN ? AND ?";
+                        String entry = "SELECT * FROM studentlog WHERE entrytype = IN AND timestamp BETWEEN ? AND ?";
+                        String exit = "SELECT * FROM studentexitlog  entrytype = OUT AND WHERE timestamp BETWEEN ? AND ?";
                         String ssl = "SELECT * FROM sslog WHERE timestamp BETWEEN ? AND ?";
                         String al = "SELECT * FROM adminlog WHERE timestamp BETWEEN ? AND ?";
                 

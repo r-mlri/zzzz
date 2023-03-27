@@ -18,6 +18,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.DBConnection;
+import model.User;
 ///////////////////////DI GUMAGANA JAVAX SAKIN AND SGURO DAHIL SA JAVA KO SO NAG JAKARTA AKO - Rafael Mallari//////////////////////////////////////////////
 //////////////////////JUST IGNORE YUNG IMPORT ERRORS AS DI NAMAN APEKTADO BUONG PROJECT, BUT IF U WANT 2 DELETE GO FOR IT//////////////////////////////////
 
@@ -33,12 +34,17 @@ public class forgotPassController extends HttpServlet {
      * @param config
      * @throws ServletException
      */
+    public void init(ServletConfig config) throws ServletException {
+        super.init(config);
+        
+        conn = DBConnection.getConnection();
+    }
+    
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        conn = DBConnection.getConnection();
         
-        forgotPassModel user = new forgotPassModel();
+        forgotPassModel forget = new forgotPassModel();
         if ("reset".equals(request.getParameter("hidden"))) {        
         String username = request.getParameter("username");
         String password = request.getParameter("password"); 
@@ -46,15 +52,20 @@ public class forgotPassController extends HttpServlet {
         
         
         if (conn != null) {
+            User User = new User(username, password, pin);
+            
+            User.setUsername(username);
+            User.setPassword(password);
+            User.setPin(pin);
         try {
-            if(user.checkU(username, pin, conn) == true)
+            if(forget.checkU(User, conn) == true)
             {
-                if(user.checkP(password, username, pin, conn) == true)
+                if(forget.setP(User, conn) == true)
                 {
                     response.sendRedirect("Login.jsp"); 
                 }
                 else{
-                request.setAttribute("errorMessage", "<font color=red>Failed to update password. REASON PASSWORD DOES NOT MEET EXPECTATIONS</font>");
+                request.setAttribute("errorMessage", "<font color=red>Failed to update password. REASON PASSWORD DOES NOT zMEET EXPECTATIONS</font>");
                 request.getRequestDispatcher("forgotPassword.jsp").forward(request, response);
                 }
             }
@@ -63,7 +74,7 @@ public class forgotPassController extends HttpServlet {
             request.getRequestDispatcher("forgotPassword.jsp").forward(request, response);
         }
             else{
-                request.setAttribute("errorMessage", "<font color=red>Failed to update password. REASON WRONG USERNAME/RESETPIN</font>");
+                request.setAttribute("errorMessage", "<font color=red>Wrong Username or Reset Pin</font>");
                 request.getRequestDispatcher("forgotPassword.jsp").forward(request, response);
             }
         } catch (SQLException | ClassNotFoundException ex) {
