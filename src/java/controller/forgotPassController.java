@@ -10,6 +10,8 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -31,49 +33,43 @@ public class forgotPassController extends HttpServlet {
      * @param config
      * @throws ServletException
      */
-    public void init(ServletConfig config) throws ServletException {
-        super.init(config);
-        
-        Connection conn;
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
         
         conn = DBConnection.getConnection();
-    }
-
-     protected void doGet(HttpServletRequest request, HttpServletResponse response)
-        throws ServletException, IOException {
-
-               if("hidden".equals(request.getParameter("reset"))){
-                 String username = request.getParameter("username");
-                 String password = request.getParameter("password");
-                 int pin = Integer.parseInt(request.getParameter("pin"));
-                 String pinStr = String.valueOf(pin);
-                if(conn != null){
-                    forgotPassModel model = new forgotPassModel();
-                    selectAccounts model1 = new selectAccounts();
-                    ResultSet error = model1.retrieveData(conn);
-                    
-                    if(error != null){
-                         boolean records = model.updateData(password, username, pin, conn);
-
-                         if(records != false){
-                             request.setAttribute("results", records);
-                             request.getRequestDispatcher("Login.jsp").forward(request, response);
-                         }
-                    } else{
-                        if (username == null) {
-			request.setAttribute("errorMessage", "<font color=red>Enter username.</font>");
-                        request.getRequestDispatcher("forgotPassword.jsp").forward(request, response);
-			} 
-                        else if (password == null){
-                        request.setAttribute("errorMessage", "<font color=red>Please Input a Password</font>");
-                        request.getRequestDispatcher("forgotPassword.jsp").forward(request, response);
-                        }
-                        else if (pinStr == null) {
-                            request.setAttribute("errorMessage", "<font color=red>Enter the correct pin.</font>");
-                            request.getRequestDispatcher("forgotPassword.jsp").forward(request, response);
-                        } 
-                    }
-                    }
+        
+        forgotPassModel user = new forgotPassModel();
+        if ("reset".equals(request.getParameter("hidden"))) {        
+        String username = request.getParameter("username");
+        String password = request.getParameter("password"); 
+        int pin = Integer.parseInt(request.getParameter("pin"));   
+        
+        
+        if (conn != null) {
+        try {
+            if(user.checkU(username, pin, conn) == true)
+            {
+                if(user.checkP(password, username, pin, conn) == true)
+                {
+                    response.sendRedirect("Login.jsp"); 
+                }
+                else{
+                request.setAttribute("errorMessage", "<font color=red>Failed to update password. REASON PASSWORD DOES NOT MEET EXPECTATIONS</font>");
+                request.getRequestDispatcher("forgotPassword.jsp").forward(request, response);
+                }
             }
+            else if (pin < 1000 || pin > 9999) {
+            request.setAttribute("errorMessage", "<font color=red>PIN should be a 4-digit number.</font>");
+            request.getRequestDispatcher("forgotPassword.jsp").forward(request, response);
+        }
+            else{
+                request.setAttribute("errorMessage", "<font color=red>Failed to update password. REASON WRONG USERNAME/RESETPIN</font>");
+                request.getRequestDispatcher("forgotPassword.jsp").forward(request, response);
+            }
+        } catch (SQLException | ClassNotFoundException ex) {
+            Logger.getLogger(forgotPassController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        }
     }
- }
+    }
+}

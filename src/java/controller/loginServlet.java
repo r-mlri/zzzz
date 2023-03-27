@@ -52,6 +52,7 @@ public class loginServlet extends HttpServlet {
             {
                 request.setAttribute("errorMessage", "<font color=red>Enter your password.</font>");
                 request.getRequestDispatcher("Login.jsp").forward(request, response);
+                return;
             }
             else {
                 request.setAttribute("errorMessage", "<font color=red>Either user name or password or role is wrong.</font>");
