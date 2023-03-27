@@ -14,3 +14,4 @@ nbproject/ant-deploy.xml
 nbproject/private/private.xml
 *.jar
 *.jar
+*.class
