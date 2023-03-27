@@ -17,7 +17,10 @@
   <div class="error-container">
     <h1>505 Error</h1>
     <p>There seems to be a problem with the Gym Monitoring System. Please try again later.</p>
-    <button href="index.jsp">Go Back</button>
+    
+    <a href="index.jsp">
+    <button>Go Back</button>
+    </a>
   </div>
 </body>
 </html>
