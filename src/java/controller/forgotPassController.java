@@ -58,8 +58,8 @@ public class forgotPassController extends HttpServlet {
                 request.getRequestDispatcher("forgotPassword.jsp").forward(request, response);
                 }
             }
-            else if (pin < 1000 || pin > 9999) {
-            request.setAttribute("errorMessage", "<font color=red>PIN should be a 4-digit number.</font>");
+            else if (pin < 10000 || pin > 99999) {
+            request.setAttribute("errorMessage", "<font color=red>PIN should be a 5-digit number.</font>");
             request.getRequestDispatcher("forgotPassword.jsp").forward(request, response);
         }
             else{
