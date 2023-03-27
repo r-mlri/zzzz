@@ -62,7 +62,7 @@
   
   
   
-  <div class="container">
+ <div class="container">
 		<div class="left">
                     <center><h2>Report Generator</h2></center>
 			<form method="get" action="LogController">
@@ -79,6 +79,14 @@
                                 <button type="Generate" name="Generate" value="Generate" id ="Generate">Generate Report</button>
 			</form>
 		</div>
+          <%
+String errorMessage = (String) request.getAttribute("errorMessage");
+if (errorMessage != null) {
+%>
+    <div class="error-message"><%= errorMessage %></div>
+<%
+}
+%> 
            
   
   

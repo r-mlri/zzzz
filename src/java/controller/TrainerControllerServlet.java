@@ -101,13 +101,20 @@ public class TrainerControllerServlet extends HttpServlet {
 
     }
 
-    private void insertTrainer(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    private void insertTrainer(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         String name = request.getParameter("name");
         String specialty = request.getParameter("specialty");
         String sports = request.getParameter("sports");
-        Trainer newTrainer = new Trainer(name, specialty, sports);
-        trainerDAO.saveTrainer(newTrainer);
-        response.sendRedirect("list");
+        if(name == null && specialty ==null && sports ==null){
+            request.setAttribute("errorMessage", "<font color=red>please fill up the form</font>");
+            request.getRequestDispatcher("addTrainer.jsp").forward(request, response);
+        }else if(name != null && specialty !=null && sports !=null){
+            Trainer newTrainer = new Trainer(name, specialty, sports);
+            trainerDAO.saveTrainer(newTrainer);
+            response.sendRedirect("list");
+        }
+
+        
     }
 
     private void updateTrainer(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -115,10 +122,9 @@ public class TrainerControllerServlet extends HttpServlet {
         String name = request.getParameter("name");
         String specialty = request.getParameter("specialty");
         String sports = request.getParameter("sports");
-
         Trainer trainer = new Trainer(id, name, specialty, sports);
         trainerDAO.updateTrainer(trainer);
-        response.sendRedirect("list");
+        response.sendRedirect("list");        
     }
 
     private void deleteTrainer(HttpServletRequest request, HttpServletResponse response) throws IOException {

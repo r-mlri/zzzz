@@ -48,7 +48,7 @@
   <!-- CONTENTS IN THE MIDDLE OF THE WEBPAGE HERE -->
   
   <%
-  TrainerDAO trainerDAO = new TrainerDAO("jdbc:mysql://localhost:3306/ustfits?useSSL=false", "root", "root");
+  TrainerDAO trainerDAO = new TrainerDAO("jdbc:mysql://localhost:3306/ustfits?useSSL=false", "root", "MyNewPass");
 
   // Get the trainer to be edited based on the ID passed as a query parameter
   int id = Integer.parseInt(request.getParameter("id"));

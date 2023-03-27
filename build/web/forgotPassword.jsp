@@ -203,14 +203,18 @@
         <input type="submit" value="Reset">
         <input type="hidden" name="hidden" value="reset">
       </form>
+      <%
+String errorMessage = (String) request.getAttribute("errorMessage");
+if (errorMessage != null) {
+%>
+    <div class="error-message"><%= errorMessage %></div>
+<%
+}
+%> 
       
       <br>
       
     </div>
-  
-  
-  
-  
   
   
   

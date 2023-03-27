@@ -251,6 +251,14 @@
             <div class="content-label">Sport:</div>
             <input class="content-input" type="text" name="sports" placeholder="Enter Sport">
         </div>
+         <%
+String errorMessage = (String) request.getAttribute("errorMessage");
+if (errorMessage != null) {
+%>
+    <div class="error-message"><%= errorMessage %></div>
+<%
+}
+%>
         <!--  <center><div class="image-placeholder"></div></center>    -->  
        
         <div class="button-container">
@@ -258,9 +266,6 @@
         </div>
     </div>
 </form>
-
-  
-  
   
   
   

@@ -4,10 +4,12 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 public class UserDAO {
 
-    public User authenticate(String username, String password) {
+    public User authenticate(/*User User*/ String username, String password) throws SQLException{
+        
         Connection connection = null;
         PreparedStatement statement = null;
         ResultSet resultSet = null;
@@ -19,7 +21,7 @@ public class UserDAO {
             statement.setString(1, username);
             statement.setString(2, password);
             resultSet = statement.executeQuery();
-
+            
             if (resultSet.next()) {
                 String role = resultSet.getString("role");
                 user = new User(username, password, role);

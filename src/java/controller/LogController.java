@@ -57,7 +57,6 @@ public class LogController extends HttpServlet {
         
         HttpSession session = request.getSession();
         User name = (User) session.getAttribute("user"); 
-        String username = name.getUsername();
         
         String select = request.getParameter("select");
         String Generate = request.getParameter("Generate");
@@ -69,11 +68,12 @@ public class LogController extends HttpServlet {
                     String timestart = request.getParameter("start");
                     String timeend = request.getParameter("end"); 
                     
-                    PrintWriter outs = response.getWriter();
-                
-                    OutputStream files = new FileOutputStream(new File("C:/Users/Thomas Jefferson Qiu/Downloads/zzzz with reports/Generated Visitors.pdf"));
+                    
+                    response.setContentType("application/pdf");
+                    response.setHeader("Content-disposition", "inline; filename=Generated Visitors.pdf");
+                    //OutputStream files = new FileOutputStream(new File("C:/Users/Thomas Jefferson Qiu/Documents/zzzz/Generated Visitors.pdf"));
                     Document documents = new Document();
-                    PdfWriter writers = PdfWriter.getInstance(documents, files);
+                    PdfWriter writers = PdfWriter.getInstance(documents, response.getOutputStream());
                     documents.open();
                 
                     if(timestart != null && timeend != null){
@@ -228,6 +228,7 @@ public class LogController extends HttpServlet {
                     writers.setPageEvent(event);
 
                     documents.close();
+                    //files.close();
                     rse.close();
                     rsx.close();
                     rssl.close();
@@ -235,7 +236,6 @@ public class LogController extends HttpServlet {
                     connection.close();
 
 
-                    files.close();
                     }
                     else{
                         response.sendRedirect("505error.jsp");
@@ -252,18 +252,19 @@ public class LogController extends HttpServlet {
             case "trainers":
                 if(Generate.equals("Generate")){
                     try {
-                    PrintWriter outt = response.getWriter();
-
-                    OutputStream filet = new FileOutputStream(new File("C:/Users/Thomas Jefferson Qiu/Downloads/zzzz with reports/Generated Trainers.pdf"));
+                    
+                    response.setContentType("application/pdf");
+                    response.setHeader("Content-disposition", "inline; filename=Generated Trainers.pdf");
+                    //OutputStream filet = new FileOutputStream(new File("C:/Users/Thomas Jefferson Qiu/Documents/zzzz/Generated Trainers.pdf"));
                     Document documentt = new Document();
-                    PdfWriter writer =PdfWriter.getInstance(documentt, filet);
+                    PdfWriter writert = PdfWriter.getInstance(documentt, response.getOutputStream());
                     documentt.open();
 
                     connection = DBConnection.getConnection();
 
-                    String equipment = "SELECT * FROM trainers";
+                    String trainers = "SELECT * FROM trainers";
 
-                    PreparedStatement stmtt = connection.prepareStatement(equipment);
+                    PreparedStatement stmtt = connection.prepareStatement(trainers);
                     ResultSet rst = stmtt.executeQuery();
 
 
@@ -304,14 +305,14 @@ public class LogController extends HttpServlet {
                         documentt.add(tablet);
 
                     Footer event = new Footer();
-                    writer.setPageEvent(event);
+                    writert.setPageEvent(event);
 
                     documentt.close();
+                    //filet.close();
                     rst.close();
                     connection.close();
 
 
-                    filet.close();
                 } catch (DocumentException e) {
                 } catch (SQLException ex) {
                 Logger.getLogger(LogController.class.getName()).log(Level.SEVERE, null, ex);
@@ -324,11 +325,12 @@ public class LogController extends HttpServlet {
             case "equipments":
                 if(Generate.equals("Generate")){
                 try {
-                    PrintWriter oute = response.getWriter();
-
-                    OutputStream filee = new FileOutputStream(new File("C:/Users/Thomas Jefferson Qiu/Downloads/zzzz with reports/Generated Equipments.pdf"));
+                    
+                    response.setContentType("application/pdf");
+                    response.setHeader("Content-disposition", "inline; filename=Generated Equipments.pdf");
+                    //OutputStream filee = new FileOutputStream(new File("C:/Users/Thomas Jefferson Qiu/Documents/zzzz/Generated Equipments.pdf"));
                     Document documente = new Document();
-                    PdfWriter writer =PdfWriter.getInstance(documente, filee);
+                    PdfWriter writere =PdfWriter.getInstance(documente, response.getOutputStream());
                     documente.open();
 
                     connection = DBConnection.getConnection();
@@ -376,14 +378,14 @@ public class LogController extends HttpServlet {
                         documente.add(tableeq);
 
                     Footer event = new Footer();
-                    writer.setPageEvent(event);
+                    writere.setPageEvent(event);
 
                     documente.close();
+                    //filee.close();
                     rseq.close();
                     connection.close();
 
 
-                    filee.close();
                 } catch (DocumentException e) {
                 } catch (SQLException ex) {
                 Logger.getLogger(LogController.class.getName()).log(Level.SEVERE, null, ex);

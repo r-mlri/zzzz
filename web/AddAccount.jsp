@@ -81,7 +81,14 @@
         <input type="hidden" name="hidden" value="create">
         
       </form>
-      
+     <%
+String errorMessage = (String) request.getAttribute("errorMessage");
+if (errorMessage != null) {
+%>
+    <div class="error-message"><%= errorMessage %></div>
+<%
+}
+%> 
     </div>
   
   

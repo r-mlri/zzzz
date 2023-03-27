@@ -76,6 +76,14 @@
             <input name="ID" type="number" size="50" placeholder="Student Number" required> <br> <br>
             <input type="submit" value="Exit">
             <input type="hidden" name="hidden" value="Leave">
+            <%
+String errorMessage = (String) request.getAttribute("errorMessage");
+if (errorMessage != null) {
+%>
+    <div class="error-message"><%= errorMessage %></div>
+<%
+}
+%> 
       </div>
       <div style="flex:1;">
         <label>Equipment:</label>

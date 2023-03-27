@@ -1,16 +1,19 @@
 package controller;
 
 
+
 import java.io.IOException;
 import java.sql.*;
 
 ///////////////////////DI GUMAGANA JAVAX SAKIN AND SGURO DAHIL SA JAVA KO SO NAG JAKARTA AKO - Rafael Mallari//////////////////////////////////////////////
 //////////////////////JUST IGNORE YUNG IMPORT ERRORS AS DI NAMAN APEKTADO BUONG PROJECT, BUT IF U WANT 2 DELETE GO FOR IT//////////////////////////////////
+import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletConfig;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -52,76 +55,40 @@ public class entryController extends HttpServlet {
             }
     }
 
-     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-        throws ServletException, IOException {
+      protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
 
-                if("Entry".equals(request.getParameter("hidden"))){
+        if ("Entry".equals(request.getParameter("hidden"))) {
 
-                int ID = Integer.parseInt(request.getParameter("ID"));
-
-                if(conn != null){
-                    entryModel model = new entryModel();
-                    selectModel model2 = new selectModel();
-                    boolean error = model.insertData(ID, conn);
-                    
-                    if(error != false){
-                         ResultSet records = model2.retrieveData(conn);
-
-                         if(records != null){
-                             request.setAttribute("results", records);
-                             request.getRequestDispatcher("SuccessPage.jsp").forward(request, response);
-                         }
-                         else{
-                             request.getRequestDispatcher("error2.jsp").forward(request, response);
-                         }
-                    }
-                    else{
-                        request.getRequestDispatcher("error.jsp").forward(request, response);
-                    }
-                }
-                else{
-                    request.getRequestDispatcher("error.jsp").forward(request, response);
-                }    
+            String errorMessage = "";
+            
+            // Validate input parameters
+            String username = request.getParameter("username");
+            if (username == null || username.length() == 0) {
+                errorMessage = "<font color=red>Please enter a valid username.</font>";
             }
+
+            String IDString = request.getParameter("ID");
+            int ID = 0;
+            try {
+                ID = Integer.parseInt(IDString);
+            } catch (NumberFormatException e) {
+                errorMessage = "<font color=red>Please enter a valid ID.</font>";
+            }
+
+            String input = request.getParameter("input");
+            if (input == null || input.length() != 10 || !input.matches("\\d+")) {
+                errorMessage = "<font color=red>Please enter a valid input (10 digits only).</font>";
+            }
+
+            if (!errorMessage.isEmpty()) {
+                request.setAttribute("errorMessage", errorMessage);
+                RequestDispatcher rd = getServletContext().getRequestDispatcher("/StudentLog.jsp");
+                rd.include(request, response);
+                return;
+            }
+
+           
+        }
     }
-
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        processRequest(request, response);
-    }
-
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        processRequest(request, response);
-    }
-
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
-
 }

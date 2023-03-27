@@ -59,15 +59,15 @@
             <input type="submit" value="Enter">
             <input type="hidden" name="hidden" value="Entry"> 
          </form>
+           <%
+String errorMessage = (String) request.getAttribute("errorMessage");
+if (errorMessage != null) {
+%>
+    <div class="error-message"><%= errorMessage %></div>
+<%
+}
+%> 
    </div>
-  
-  
-  
-  
-  
-  
-  
-  
   
   
   

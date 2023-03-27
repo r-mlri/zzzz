@@ -46,27 +46,27 @@
         <form method="post" action="login">
     
         <label for="username" style="margin-left: 10px;">Username:</label>
-        <input type="text" name="username">
+        <input type="text" name="username" required>
         <br><br>
         
         <label for="password">Password:&nbsp;&nbsp;</label>
-        <input type="password" name="password">
+        <input type="password" name="password" required>
         <br><br>
         
         <input type="submit" value="Login">
         </form>
+        <%
+String errorMessage = (String) request.getAttribute("errorMessage");
+if (errorMessage != null) {
+%>
+    <div class="error-message"><%= errorMessage %></div>
+<%
+}
+%>
       
       <br>
       <a href="forgotPassword.jsp" style="color: black;">Forgot Password?</a>
     </div>
-  
-  
-  
-  
-  
-  
-  
-  
   
   
   

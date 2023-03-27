@@ -41,7 +41,7 @@ public class InsertTrainerServlet extends HttpServlet {
         
                         
                         
-        if(name != null)
+        if(name != null && specialty!= null && sports!= null)
             {                
 
                 response.sendRedirect("SuccessPage.jsp");       
@@ -49,18 +49,33 @@ public class InsertTrainerServlet extends HttpServlet {
             }
             else 
                 {
-			RequestDispatcher rd = getServletContext().getRequestDispatcher(
-					"/error500.jsp");
-			PrintWriter out = response.getWriter();
 			if (name == null) 
                         {
-				out.println("<font color=red>Please fill up the form.</font>");
+                            request.setAttribute("errorMessage", "<font color=red>Enter a name.</font>");
+                            RequestDispatcher rd = getServletContext().getRequestDispatcher("addTrainer.jsp");
+                            rd.include(request, response);
 			} 
+                        
+                        else if (specialty == null)
+                        {
+                            request.setAttribute("errorMessage", "<font color=red>Enter a specialty.</font>");
+                            RequestDispatcher rd = getServletContext().getRequestDispatcher("addTrainer.jsp");
+                            rd.include(request, response);
+                        }
+                        else if (sports == null)
+                        {
+                            request.setAttribute("errorMessage", "<font color=red>Enter a sport.</font>");
+                            RequestDispatcher rd = getServletContext().getRequestDispatcher("addTrainer.jsp");
+                            rd.include(request, response);
+                        }
                         else 
                         {
-				out.println("<font color=red>You missed the Captcha.</font>");
+			request.setAttribute("errorMessage", "<font color=red>Please fill up the form.</font>");
+                        RequestDispatcher rd = getServletContext().getRequestDispatcher("addTrainer.jsp");
+                        rd.include(request, response);
 			}
-			rd.include(request, response);
+			RequestDispatcher rd = getServletContext().getRequestDispatcher("addTrainer.jsp");
+                        rd.include(request, response);
                 }    
         
                 Trainer trainer = new Trainer();
