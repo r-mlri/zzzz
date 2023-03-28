@@ -17,7 +17,9 @@
   <div class="error-container">
     <h1>404 Error</h1>
     <p>The page you are looking for does not exist or has been moved.</p>
-    <button href="index.jsp">Go Back</button>
+    <a href="index.jsp">
+    <button>Go Back</button>
+    </a>
   </div>
 </body>
 </html>
