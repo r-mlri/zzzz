@@ -6,7 +6,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import jakarta.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletRequest;
 
 public class exitModel {
